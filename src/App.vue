@@ -1,17 +1,11 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
+<script>
+  export default {
+    name:'App'
+  }
 </script>
 
 <template>
-  <header>
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <router-view></router-view>
 </template>
 
 <style scoped>
