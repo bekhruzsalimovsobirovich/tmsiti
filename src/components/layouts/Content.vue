@@ -1,5 +1,5 @@
 <template>
-  <main class="content p-4 pt-[60px] m-[5px]">
+  <main class="content p-4 pt-[80px] m-[5px]">
     <h1>Welcome dashboard</h1>
     <p>Lorem ipsum dolor sit amet.</p>
   </main>
