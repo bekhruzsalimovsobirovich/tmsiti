@@ -1,6 +1,6 @@
 <template>
-  <nav class="bg-[red] navbar bg-gray-900 text-white p-4 flex justify-between items-center fixed w-full">
-    <div class="ml-[250px]">Myapp</div>
+  <nav class="navbar text-white p-4 rounded-[8px] border-[1px] flex justify-between items-center fixed m-[10px]">
+    <div class="text-[#000]">Myapp</div>
     <ul>
       <li>nav1 </li>
       <li>nav 2</li>
@@ -17,5 +17,7 @@ export default {
 <style scoped>
 .navbar {
   height: 60px;
+  margin-left: 290px;
+  width: calc(100% - 300px);
 }
 </style>

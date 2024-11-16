@@ -1,4 +1,4 @@
-<template>
+<template class="bg-[#FCFCFC]">
   <div class="layout h-screen flex flex-col">
     <Navbar/>
     <div class="flex flex-1">
