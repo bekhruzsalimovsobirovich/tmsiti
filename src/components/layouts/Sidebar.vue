@@ -7,7 +7,7 @@
           <h2 class="text-[#000] font-bold text-[18px] leading-[28px]">Wiko</h2>
         </div>
         <div class="left text-center flex">
-          <button class="text-[#000] w-[24px] h-[24px] font-bold">
+          <button class="text-[#000] w-[24px] h-[24px] font-bold" @click="toggleSidebar">
             <i class="material-icons">keyboard_arrow_left</i>
           </button>
         </div>
@@ -83,7 +83,17 @@
 
 <script>
   export default {
-    name: 'Sidebar'
+    name: 'Sidebar',
+    // data(){
+    //   return {
+    //     toggle:
+    //   }
+    // }
+    methods: {
+      toggleSidebar(){
+        document.querySelector(".sidebar").classList.toggle('sidebarActive')
+      }
+    }
   }
 </script>
 
@@ -91,6 +101,12 @@
 <style scoped>
 .sidebar {
   width: 270px;
+  transition: .5s ease-out;
+}
+
+.sidebar.sidebarActive{
+  width: 53px;
+  overflow: hidden;
 }
 
 .active{
