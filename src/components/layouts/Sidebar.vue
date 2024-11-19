@@ -1,7 +1,8 @@
 <template>
-  <aside class="bg-[#fff] flex flex-col justify-between sidebar text-white h-[calc(100vh - 10px)] p-2 z-[10] rounded-[8px] border-[1px] m-[10px]">
+  <aside :class="{sidebarActive: isSidebarOpen}"
+         class="bg-[#fff] flex flex-col justify-between sidebar text-white h-[calc(100vh - 10px)] p-2 z-[10] rounded-[8px] border-[1px] m-[10px]">
     <div>
-      <div class="logo flex items-center justify-between mb-[30px]">
+      <div v-if="!isSidebarOpen" class="logo flex items-center justify-between mb-[30px]">
         <div class="right flex items-center justify-start">
           <img class="mr-[7px]" src="/public/sidebar/sidebarimg.png" alt="sidebarimg">
           <h2 class="text-[#000] font-bold text-[18px] leading-[28px]">Wiko</h2>
@@ -12,55 +13,62 @@
           </button>
         </div>
       </div>
+      <div v-else class="text-center mb-[30px] flex justify-center">
+        <div class="left text-center flex">
+          <button class="text-[#000] w-[30px] h-[30px] font-bold" @click="toggleSidebar">
+            <i class="material-icons" style="font-size: 30px">arrow_circle_right</i>
+          </button>
+        </div>
+      </div>
       <div class="sidebar-menu text-[#000]">
         <ul>
-          <li class="mb-[10px]">
+          <li :class="{hidden: isSidebarOpen}" class="mb-[10px]">
             <div class="flex items-center border-[1px] rounded-[5px] p-[8px]">
               <i class="material-icons text-[#9CA3AF] mr-[10px]">search</i>
               <input class="outline-none w-[160px] text-[#9CA3AF]" type="text" placeholder="Qidiruv...">
               <i class="material-icons text-[#9CA3AF]">keyboard_command</i>
             </div>
           </li>
-          <li class="mb-[10px]">
-            <div class="flex font-bold items-center cursor-pointer transition ease-in-out delay-50 hover:bg-[#016F75] justify-center bg-[#01565B] border-[1px] rounded-[5px] p-[8px]">
-              <i class="material-icons text-[#fff] mr-[10px]">add</i>
-              <button class="btn text-[#fff] text-[14px]">Yangi murojaat qo`shish</button>
+          <li class="mb-[10px]" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
+            <div :class="{'p-[5px]': isSidebarOpen}" class="flex font-bold items-center cursor-pointer transition ease-in-out delay-50 hover:bg-[#016F75] justify-center bg-[#01565B] border-[1px] rounded-[5px] p-[8px]">
+              <i :class="[{'mr-[0px]': isSidebarOpen}]" class="material-icons text-[#fff] mr-[10px]">add</i>
+              <button :class="{hidden: isSidebarOpen}" class="btn text-[#fff] text-[14px]">Yangi murojaat qo`shish</button>
             </div>
           </li>
           <li class="mb-[10px] item">
-            <button class="flex w-full text-[14px] font-bold items-center cursor-pointer transition ease-in-out delay-50 active rounded-[5px] p-[8px]">
-              <i class="material-icons text-[#01565B] mr-[10px]">insert_drive_file</i>
-              Murojaatlar
+            <button :class="{'p-[5px]': isSidebarOpen}" class="flex w-full text-[14px] font-bold items-center cursor-pointer transition ease-in-out delay-50 active rounded-[5px] p-[8px]">
+              <i :class="[{'mr-[0px]': isSidebarOpen}]" class="material-icons text-[#01565B] mr-[10px]">insert_drive_file</i>
+              <span :class="{hidden: isSidebarOpen}">Murojaatlar</span>
             </button>
           </li>
           <li class="mb-[10px] item">
-            <button class="flex w-full text-[14px] font-bold hover:text-[#01565B] items-center cursor-pointer transition ease-in-out delay-50 hover:bg-[#E6EEEF] rounded-[5px] p-[8px]">
-              <i class="material-icons text-[#9CA3AF] mr-[10px]">insert_drive_file</i>
-              Mening hisoblarim
+            <button :class="{'p-[5px]': isSidebarOpen}" class="flex w-full text-[14px] font-bold hover:text-[#01565B] items-center cursor-pointer transition ease-in-out delay-50 hover:bg-[#E6EEEF] rounded-[5px] p-[8px]">
+              <i :class="[{'mr-[0px]': isSidebarOpen}]" class="material-icons text-[#9CA3AF] mr-[10px]">insert_drive_file</i>
+              <span :class="{hidden: isSidebarOpen}">Mening hisoblarim</span>
             </button>
           </li>
           <li class="mb-[10px] item">
-            <button class="flex w-full text-[14px] font-bold hover:text-[#01565B] items-center cursor-pointer transition ease-in-out delay-50 hover:bg-[#E6EEEF] rounded-[5px] p-[8px]">
-              <i class="material-icons text-[#9CA3AF] mr-[10px]">insert_drive_file</i>
-              Billing
+            <button :class="{'p-[5px]': isSidebarOpen}" class="flex w-full text-[14px] font-bold hover:text-[#01565B] items-center cursor-pointer transition ease-in-out delay-50 hover:bg-[#E6EEEF] rounded-[5px] p-[8px]">
+              <i :class="[{'mr-[0px]': isSidebarOpen}]" class="material-icons text-[#9CA3AF] mr-[10px]">insert_drive_file</i>
+              <span :class="{hidden: isSidebarOpen}">Billing</span>
             </button>
           </li>
           <li class="mb-[10px] item">
-            <button class="flex w-full text-[14px] font-bold hover:text-[#01565B] items-center cursor-pointer transition ease-in-out delay-50 hover:bg-[#E6EEEF] rounded-[5px] p-[8px]">
-              <i class="material-icons text-[#9CA3AF] mr-[10px]">insert_drive_file</i>
-              Mening xatlarim
+            <button :class="{'p-[5px]': isSidebarOpen}" class="flex w-full text-[14px] font-bold hover:text-[#01565B] items-center cursor-pointer transition ease-in-out delay-50 hover:bg-[#E6EEEF] rounded-[5px] p-[8px]">
+              <i :class="[{'mr-[0px]': isSidebarOpen}]" class="material-icons text-[#9CA3AF] mr-[10px]">insert_drive_file</i>
+              <span :class="{hidden: isSidebarOpen}">Mening xatlarim</span>
             </button>
           </li>
           <li class="mb-[10px] item">
-            <button class="flex w-full text-[14px] font-bold hover:text-[#01565B] items-center cursor-pointer transition ease-in-out delay-50 hover:bg-[#E6EEEF] rounded-[5px] p-[8px]">
-              <i class="material-icons text-[#9CA3AF] mr-[10px]">insert_drive_file</i>
-              E`lonlar
+            <button :class="{'p-[5px]': isSidebarOpen}" class="flex w-full text-[14px] font-bold hover:text-[#01565B] items-center cursor-pointer transition ease-in-out delay-50 hover:bg-[#E6EEEF] rounded-[5px] p-[8px]">
+              <i :class="[{'mr-[0px]': isSidebarOpen}]" class="material-icons text-[#9CA3AF] mr-[10px]">insert_drive_file</i>
+              <span :class="{hidden: isSidebarOpen}">E`lonlar</span>
             </button>
           </li>
           <li class="mb-[10px] item">
-            <button class="flex w-full text-[14px] font-bold hover:text-[#01565B] items-center cursor-pointer transition ease-in-out delay-50 hover:bg-[#E6EEEF] rounded-[5px] p-[8px]">
-              <i class="material-icons text-[#9CA3AF] mr-[10px]">insert_drive_file</i>
-              Bilimlar bazasi
+            <button :class="{'p-[5px]': isSidebarOpen}" class="flex w-full text-[14px] font-bold hover:text-[#01565B] items-center cursor-pointer transition ease-in-out delay-50 hover:bg-[#E6EEEF] rounded-[5px] p-[8px]">
+              <i :class="[{'mr-[0px]': isSidebarOpen}]" class="material-icons text-[#9CA3AF] mr-[10px]">insert_drive_file</i>
+              <span :class="{hidden: isSidebarOpen}">Bilimlar bazasi</span>
             </button>
           </li>
         </ul>
@@ -84,14 +92,16 @@
 <script>
   export default {
     name: 'Sidebar',
-    // data(){
-    //   return {
-    //     toggle:
-    //   }
-    // }
+    data(){
+      return {
+        isSidebarOpen: false,
+        isHovered: false,
+      }
+    },
     methods: {
       toggleSidebar(){
-        document.querySelector(".sidebar").classList.toggle('sidebarActive')
+        this.isSidebarOpen = !this.isSidebarOpen;
+        // document.querySelector(".sidebar").classList.toggle('sidebarActive')
       }
     }
   }
@@ -107,6 +117,7 @@
 .sidebar.sidebarActive{
   width: 53px;
   overflow: hidden;
+  transition: .5s ease-in;
 }
 
 .active{
