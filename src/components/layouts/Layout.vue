@@ -1,8 +1,8 @@
 <template class="bg-[#FCFCFC]">
   <div class="layout h-screen flex flex-col">
-    <Navbar/>
+    <Navbar :isSidebar="isSidebar"/>
     <div class="flex flex-1">
-      <Sidebar/>
+      <Sidebar :isSidebar="isSidebar" @update:isSidebar="isSidebar = $event"/>
       <Content/>
     </div>
   </div>
@@ -18,6 +18,11 @@ import Content from "@/components/layouts/Content.vue";
       Navbar,
       Sidebar,
       Content
+    },
+    data(){
+      return {
+        isSidebar:false
+      }
     }
   }
 </script>
