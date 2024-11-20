@@ -126,6 +126,7 @@
 .sidebar.sidebarActive{
   width: 53px;
   overflow: hidden;
+  /*transform: translateX(53px);*/
   transition: .5s ease-in;
 }
 

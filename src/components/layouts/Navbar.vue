@@ -1,5 +1,7 @@
 <template>
-  <nav class="navbar text-white p-4 rounded-[8px] border-[1px] flex justify-between items-center fixed m-[10px] bg-[#fff]">
+  <nav
+      :class="isSidebar ? '!ml-[72px] !w-[calc(100%-80px)] !transition !duration-500 !ease-in' : ''"
+      class="navbar text-white p-4 rounded-[8px] border-[1px] flex justify-between items-center fixed m-[10px] bg-[#fff]">
     <div class="text-[#000]">
       <button class="flex itmes-center leading-[24px]">
         <i class="material-icons mr-[12px]">keyboard_arrow_left</i>
@@ -18,7 +20,13 @@
 
 <script>
 export default {
-  name: 'Navbar'
+  name: 'Navbar',
+  props:{
+    isSidebar:{
+      type: Boolean,
+      required: true
+    }
+  }
 }
 </script>
 
